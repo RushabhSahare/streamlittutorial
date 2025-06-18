@@ -3,8 +3,8 @@ import requests
 
 st.title('st.secrets')
 
-api_key=st.write(st.secrets["my_api"]["key"])
-base_url=st.write(st.secrets["my_api"]["base_url"])
+api_key=st.secrets["my_api"]["key"]
+base_url=st.secrets["my_api"]["base_url"]
 
 headers = {"Authorization": f"Bearer {api_key}"}
 response = requests.get(base_url, headers=headers)
