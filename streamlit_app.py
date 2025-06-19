@@ -1,12 +1,16 @@
 import streamlit as st
-import requests
+import pandas as pd
 
-st.title('st.secrets')
+st.title('st.file_uploader')
 
-api_key=st.secrets["my_api"]["key"]
-base_url=st.secrets["my_api"]["base_url"]
+st.subheader('Input CSV')
+uploaded_file = st.file_uploader("Choose a file")
 
-headers = {"Authorization": f"Bearer {api_key}"}
-response = requests.get(base_url, headers=headers)
-
-st.write("API call made")
+if uploaded_file is not None:
+  df = pd.read_csv(uploaded_file)
+  st.subheader('DataFrame')
+  st.write(df)
+  st.subheader('Descriptive Statistics')
+  st.write(df.describe())
+else:
+  st.info('☝️ Upload a CSV file')
